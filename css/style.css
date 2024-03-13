@@ -1,0 +1,131 @@
+html {
+  overflow-y: scroll;
+}
+
+body {
+  font-family: 'Arial', 'Lucida Grande', 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', 'Meiryo';
+  padding: 50px 4%;
+}
+
+div {
+  color: #555;
+  font-size: 13pt;
+}
+
+div#contents > h1 {
+  margin-top: 40px;
+  color: #333;
+}
+
+div#contents > h2 {
+  margin-top: 40px;
+}
+
+ul.nav a.active,
+ul.nav a.active:hover,
+ul.nav a.active:focus{
+  color: #fff;
+  background-color: #000;
+}
+
+span.me {
+  border-bottom: solid 1px #000;
+}
+
+em {
+  text-decoration: none;
+  font-style: normal;
+  color: #ee3d69;
+  font-weight: bold;
+}
+
+.navbar span.navbar-brand {
+  color: #fff;
+}
+
+.navbar li > a.btn {
+  margin: 8px 15px 0 15px;
+  padding: 6px 2px;
+  width: 85px;
+  color: #fff;
+}
+
+.navbar li > a.btn:hover,
+.navbar li > a.btn:focus {
+  color: #fff;
+  background-color: #31b0d5;
+}
+
+div#contents dd {
+  margin-left: 2%;
+  margin-bottom: 5px;
+}
+
+.high > li {
+  margin-bottom: 10px;
+}
+
+.u_line {
+  text-decoration: underline;
+}
+
+
+
+@media (max-width: 768px) {
+body {
+  padding: 30px 2% 20px;
+}
+
+div#contents {
+  font-size: 10pt;
+}
+
+div#contents > h1 {
+  font-size: 16pt;
+}
+
+div#contents > h2 {
+  font-size: 14pt;
+}
+
+ul, ol {
+  padding-left: 20px;
+}
+
+}
+
+
+/* for tikz_pgf */
+
+span.com {
+  padding: 0 3px;
+  color: #e33;
+  background-color: #fdd;
+}
+
+div > img {
+  margin: 0 20px 10px 0;
+  padding: 10px;
+  background-color: #eee;
+}
+
+pre span.env {
+  font-weight: bold;
+  color: #5ae;
+}
+
+pre span.env > span {
+  color: #009;
+}
+
+pre span.math {
+  color: #090;
+}
+
+@media (max-width: 768px) {
+pre {
+  min-width: 300px;
+}
+}
+
+

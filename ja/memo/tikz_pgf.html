@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Default-Style" content="text/css">
+  <meta http-equiv="Content-Type" content="text/javascript">
+<!--  <meta name="description" content="サイトの説明"> -->
+  <meta name="keywords" content="shun, sato, 佐藤, 峻">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="../../css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="../../css/style.css">
+  <title>TikZ + PGFPlots によるグラフ作成 | Shun Sato</title>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <span class="navbar-brand">佐藤 峻 (Shun Sato)</span>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="../../ja">Home</a></li>
+        <li><a href="../../ja/cv.html">CV</a></li>
+        <li><a href="../../ja/publications.html">Publications</a></li>
+        <li><a href="../../ja/links.html">Links</a></li>
+        <li><a href="../../" role="button" class="btn btn-info">English</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<div id="contents">
+
+<h1>TikZ + PGFPlots によるグラフ作成</h1>
+
+<p>
+TeXの文書を書いているときに，gnuplot等で描画した図を貼り込んでいると，<br>
+軸ラベルを変えたくなったとき，描画をやり直す羽目になり，悲しくなります．<br>
+そんなとき，TeXコード上で描画を行っていると，軸ラベルを変えるときも楽々です．<br>
+(計画的に図を書けばそんなことは起きませんが，(少なくとも私には) できません)．<br>
+このページより，<a href="http://pgfplots.sourceforge.net/gallery.html" target="_blank">PGFPlots Gallery</a>に載っている豊富な実例の方が参考になると思います．
+</p>
+
+<h2>準備</h2>
+<p>事前にやっておくべきことは，プリアンブルに，</p>
+<pre>
+\usepackage{pgfplots}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usetikzlibrary{arrows}
+</pre>
+<p>と書くだけです (簡単！)．</p>
+
+<p>
+とりあえず，簡単な例を挙げると，
+</p>
+
+<div class="clearfix">
+<img src="img/exp1.png" class="pull-left">
+<pre>
+\pgfplotsset{width=5cm}
+<span class="env">\begin{<span>tikzpicture</span>}</span>
+<span class="env">\begin{<span>axis</span>}</span>[compat=1.17,xlabel={<span class="math">$x$</span>},ylabel={<span class="math">$y$</span>},enlarge x limits=false]
+\addplot[blue!55!black,mark=*] coordinates{(0,0)(1,1)(2,0)};
+\addplot[red!85!black,mark=x,smooth] coordinates{(0,1)(1,0)(2,1)};
+\addplot[green!55!black,mark=o,only marks] coordinates{(0,0.5)(1,0.5)(2,0.5)};
+<span class="env">\end{<span>axis</span>}</span>
+<span class="env">\end{<span>tikzpicture</span>}</span>
+</pre>
+</div>
+
+<p>
+上記コードの意味を説明していきます：
+</p>
+<dl>
+<dt><span class="com">\begin{axis} ~ \end{axis}</span></dt>
+<dd>この環境宣言1つ毎に1枚の図が描画されます．<dl>
+<dt><span class="com">compat = 1.17</span></dt>
+<dd>pgfplotsのバージョン1.17を利用するという宣言です．</dd>
+<dt><span class="com">xlabel = {#1}</span></dt>
+<dd>横軸ラベルとして "#1" を出力します．横軸を指定するには <span class="com">ylabel</span> を用います．</dd>
+<dt><span class="com">enlarge x limits = false</span></dt>
+<dd>横方向の (図中の) 余白を無くします．デフォルトでは，上図の縦方向のように余白が入ります (最小値0，最大値1にも関わらず，図の描画範囲は [-0.1,1.1] ぐらいになっています)．x を y に置き換えると縦方向の余白が無くなります．</dd>
+</dl></dd>
+<dt><span class="com">\addplot</span></dt>
+<dd>このコマンドで図内に1連のデータをプロットします．
+<dl>
+<dt><span class="com">blue!55!black</span></dt>
+<dd>描画する際の色を指定します (この場合は青と黒を混ぜています)．<span class="com">blue</span>などの原色を指定することも可能です．</dd>
+<dt><span class="com">mark=*</span></dt>
+<dd>マーカーの形を規定します．"*"の部分を変えることで多様なマーカーを用いることができます．</dd>
+<dt><span class="com">smooth</span>, <span class="com">only marks</span></dt>
+<dd>デフォルトではマーカーの間は同じ色の直線で結ばれるので，
+滑らかにつなげたい場合は<span class="com">smooth</span>，マーカーのみをプロットしたい場合は<span class="com">only marks</span>を指定します．</dd>
+</dl></dd>
+<dt><span class="com">coordinates{(x<sub>1</sub>,y<sub>1</sub>)...(x<sub>n</sub>,y<sub>n</sub>)}</span></dt>
+<dd>(x<sub>1</sub>,y<sub>1</sub>),...,(x<sub>n</sub>,y<sub>n</sub>)を (並べた順に) プロットします．</dd>
+</dl>
+
+<!--
+<p>
+上記の要領でプロットはできますが，プロットするべき点が多くなってくるとコードが長くなって大変です．<br>
+解決策は (私の知る限り) 2つあります：<br>
+1つめは<span class="com">input</span>を使って，通常のTeXのファイル分割の要領で図の部分を別ファイルにしてしまうことです．<br>
+もう1つは，別ファイルに数値データのみを保存しておいて，それを読み込む方法です．
+</p>
+-->
+
+</div>
+
+<script type="text/javascript" src="../../js/jquery-2.2.0.min.js"></script>
+<script type="text/javascript" src="../../js/bootstrap.min.js"></script>
+</body>
+</html>
