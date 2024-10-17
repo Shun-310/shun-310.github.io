@@ -23,6 +23,9 @@ $(function() {
         if (csvList[i][5] != 0) {
           insert += '[<a href="' + csvList[i][5] + '" target="_blank">Proceeding</a>]';
         }
+        if (csvList[i][6] != 0) {
+          insert += '[<a href="' + csvList[i][6] + '" target="_blank">Letter</a>]';
+        }
         if (csvList[i][4] != 0) {
           insert += '[<a href="' + csvList[i][4] + '" target="_blank">Journal</a>]';
         }
@@ -31,21 +34,21 @@ $(function() {
         }
         
         // 著者名
-        insert += csvList[i][6] + ', ';
+        insert += csvList[i][7] + ', ';
         
         // 書誌情報
         if (csvList[i][0] == 1) {
-          insert += 'to appear in ' + csvList[i][7] + '.';
+          insert += 'to appear in ' + csvList[i][8];
         }
         else {
-          insert += csvList[i][7] + ', ';
-          if (csvList[i][8] != 0) {
-            insert += csvList[i][8] + ': ';
-          }
+          insert += csvList[i][8] + ', ';
           if (csvList[i][9] != 0) {
-            insert += csvList[i][9] + ', ';
+            insert += csvList[i][9] + ': ';
           }
-          insert += csvList[i][10] + '.';
+          if (csvList[i][10] != 0) {
+            insert += csvList[i][10] + ', ';
+          }
+          insert += csvList[i][11] + '.';
         }
         insert += '</li>';
       }
