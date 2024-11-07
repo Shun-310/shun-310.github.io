@@ -28,7 +28,7 @@ $(function() {
         }
         
         // 著者名
-        insert += csvList[i][6] + '. ';
+        insert += csvList[i][7] + '. ';
         insert += '</li>';
       }
       };
