@@ -139,8 +139,8 @@
 <h1>週間スケジュール</h1>
 
 <div style="text-align:center; margin: 20px;">
-    <button onclick="loadCSV('csv/schedule2025f.csv','2025年前期')" class="btn btn-info">2025 前期</button>
-    <button onclick="loadCSV('csv/schedule2025s.csv','2025年後期')" class="btn btn-info">2025 後期</button>
+    <button onclick="loadCSV('csv/2025f.csv','2025年前期')" class="btn btn-info">2025 前期</button>
+    <button onclick="loadCSV('csv/2025s.csv','2025年後期')" class="btn btn-info">2025 後期</button>
 </div>
 
 <p id="current-term" style="text-align:center; font-weight:bold; margin-bottom:20px;">
@@ -224,7 +224,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
   }
 
   // 初期表示（前期）
-  loadCSV("csv/schedule2024s.csv", "2025年 後期");
+  loadCSV("csv/2025s.csv", "2025年 後期");
 });
 </script>
 
