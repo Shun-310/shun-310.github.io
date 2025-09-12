@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Default-Style" content="text/css">
+  <meta http-equiv="Content-Type" content="text/javascript">
+  <meta name="keywords" content="shun, sato, 佐藤, 峻">
+<!--  <meta name="viewport" content="width=device-width, initial-scale=1">-->
+  <link rel="stylesheet" type="text/css" href="../../css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="../../css/style.css">
+  <title>出張予定 | Shun Sato</title>
+  <style>
+    body {
+      font-family: "Segoe UI", "Hiragino Sans", sans-serif;
+      background:#fff;
+      margin:20px;
+    }
+    h1 { text-align:center; margin-bottom:20px; }
+    .trip-list {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 0;
+      list-style: none;
+    }
+    .trip-item {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-bottom: 12px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    .trip-item h3 {
+      margin: 0 0 6px;
+      font-size: 1.1rem;
+    }
+    .trip-item p {
+      margin: 2px 0;
+      font-size: 0.9rem;
+    }
+    .pending {
+      opacity: 0.6;
+      background: #f5f5f5;
+    }
+    .active {
+      border-color: #4CAF50;
+      box-shadow: 0 2px 6px rgba(76,175,80,0.3);
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <span class="navbar-brand">佐藤 峻 (Shun Sato)</span>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="../../ja">Home</a></li>
+        <li><a href="../../ja/cv.html">CV</a></li>
+        <li><a href="../../ja/publications.html">Publications</a></li>
+        <li><a href="../../ja/links.html">Links</a></li>
+        <li><a href="../../" role="button" class="btn btn-info">English</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<div id="contents">
+
+  <h1>今後の出張予定</h1>
+  <ul class="trip-list" id="trip-list"></ul>
+
+</div>
+
+<script>
+  async function loadTrips(csvFile){
+    const response = await fetch(csvFile);
+    const text = await response.text();
+
+    const rows = text.trim().split("\n").map(r => r.split(","));
+    const header = rows[0];
+    const data = rows.slice(1).map(row=>{
+      const obj = {};
+      header.forEach((key,i)=> obj[key]=row[i]);
+      return obj;
+    });
+
+    const today = new Date();
+
+    // 今後（今日終了のもの含む）のみ
+    const upcoming = data.filter(ev => new Date(ev.end) >= today);
+
+    // 開始日の昇順でソート
+    upcoming.sort((a,b)=> new Date(a.start) - new Date(b.start));
+
+    const list = document.getElementById("trip-list");
+    list.innerHTML = "";
+
+    upcoming.forEach(ev=>{
+      const li = document.createElement("li");
+      li.className = "trip-item";
+
+      // 未定ならクラスを追加
+      if(ev.status === "未定") li.classList.add("pending");
+
+      // 現在進行中ならクラスを追加
+      const start = new Date(ev.start);
+      const end   = new Date(ev.end);
+      if(start <= today && today <= end){
+        li.classList.add("active");
+      }
+
+      li.innerHTML = `
+        <h3>${ev.conference}</h3>
+        <p>期間: ${ev.start} 〜 ${ev.end}</p>
+        <p>状態: ${ev.status}</p>
+      `;
+      list.appendChild(li);
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", ()=>{
+    loadTrips("trips.csv");
+  });
+  </script>
+
+<script type="text/javascript" src="../../js/jquery-2.2.0.min.js"></script>
+<script type="text/javascript" src="../../js/bootstrap.min.js"></script>
+</body>
+</html>
