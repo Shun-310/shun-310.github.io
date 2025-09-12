@@ -80,6 +80,7 @@
   <h1>今後の出張予定</h1>
   <ul class="trip-list" id="trip-list"></ul>
 
+  <p>(参加未定のものはグレーで表示)</p>
 </div>
 
 <script>
@@ -120,10 +121,14 @@
         li.classList.add("active");
       }
 
+      let titleHTML = ev.conference;
+      if(ev.url){
+        titleHTML = `<a href="${ev.url}" target="_blank">${ev.conference}</a>`;
+      }
+
       li.innerHTML = `
-        <h3>${ev.conference}</h3>
-        <p>期間: ${ev.start} 〜 ${ev.end}</p>
-        <p>状態: ${ev.status}</p>
+        <h3>${titleHTML}</h3>
+        <p>不在期間: ${ev.start} 〜 ${ev.end}</p>
       `;
       list.appendChild(li);
     });

@@ -1,7 +1,6 @@
-conference,start,end,status
-研究打合せ,2025-09-16,2025-09-16,確定
-CJ Numerical PDEs 2025,2025-09-21,2025-09-25,確定
-数値解析が切り開く新たな情報社会
-〜データ駆動型から「富岳NEXT」〜,2025-10-08,2025-10-10,確定
-RAMP数理最適化シンポジウム,2025-10-15,2025-10-17,確定
-IBIS2025,2025-11-12,2025-11-15,未定
+conference,start,end,status,url
+研究打合せ,2025-09-16,2025-09-16,確定,
+CJ Numerical PDEs 2025,2025-09-21,2025-09-25,確定,https://norikazu-saito.github.io/p/cj2025/
+数値解析が切り開く新たな情報社会〜データ駆動型から「富岳NEXT」〜,2025-10-08,2025-10-10,確定,https://www.hpc.itc.nagoya-u.ac.jp/rims2025/
+RAMP数理最適化シンポジウム,2025-10-15,2025-10-17,確定,https://orsj.org/ramp/ramp2025
+IBIS2025,2025-11-12,2025-11-15,未定,https://ibisml.org/ibis2025/
