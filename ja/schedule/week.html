@@ -102,8 +102,10 @@
     line-height:1.3;
     box-shadow:0 2px 4px rgba(0,0,0,0.1);
   }
-  .lecture { background:#4CAF50; }
-  .office { background:#FF9800; }
+  .office { background:#74c876; }
+  .leture { background:#ffc773; }
+  .seminar { background:#fd85ff; }
+  .esem { background:#5ce1ff; }
 </style>
 </head>
 <body>
@@ -139,8 +141,8 @@
 <h1>週間スケジュール</h1>
 
 <div style="text-align:center; margin: 20px;">
-    <button onclick="loadCSV('csv/2025f.csv','2025年前期')" class="btn btn-info">2025 前期</button>
-    <button onclick="loadCSV('csv/2025s.csv','2025年後期')" class="btn btn-info">2025 後期</button>
+    <button onclick="loadCSV('csv/2025f.csv','2025年度 前期')" class="btn btn-info">2025年度 前期</button>
+    <button onclick="loadCSV('csv/2025s.csv','2025年度 後期')" class="btn btn-info">2025年度 後期</button>
 </div>
 
 <p id="current-term" style="text-align:center; font-weight:bold; margin-bottom:20px;">
@@ -224,7 +226,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
   }
 
   // 初期表示（前期）
-  loadCSV("csv/2025s.csv", "2025年 後期");
+  loadCSV("csv/2025s.csv", "2025年度 後期");
 });
 </script>
 

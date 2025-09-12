@@ -1,4 +1,5 @@
 day,start,end,title,type
+mon,10:00,12:00,外部セミナー,esem
 tue,14:40,17:50,講義,lecture
 fri,13:00,14:30,オフィスアワー,office
-fri,14:40,16:10,セミナー,lecture
+fri,14:40,16:10,セミナー,seminar
