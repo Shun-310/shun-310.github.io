@@ -105,7 +105,6 @@
     const now = new Date();
     const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
 
-
     // 今後（今日終了のもの含む）のみ
     const upcoming = data.filter(ev => new Date(ev.end) >= today);
 
