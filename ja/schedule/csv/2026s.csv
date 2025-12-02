@@ -1,5 +1,6 @@
 day,start,end,title,type
 mon,10:00,12:00,学外セミナー,esem
 mon,13:00,14:30,講義：基礎微分積分,lecture
+tue,14:40,16:10,講義：外部非常勤,lecture
 wed,10:30,12:00,講義：計算の数理II,lecture
 fri,14:40,16:10,オフィスアワー,office
